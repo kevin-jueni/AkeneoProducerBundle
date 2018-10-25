@@ -11,11 +11,11 @@
         }
     ],
     "require": {
-        "akeneo/pim-community-dev": "^1.7",
-        "symfony/symfony": "^2.7",
-        "php-amqplib/rabbitmq-bundle": "^1.12",
-        "ocramius/proxy-manager": "^1.0",
-        "symfony/proxy-manager-bridge": "^2.7"
+        "akeneo/pim-community-dev": "^2.3",
+        "symfony/symfony": "^3.4",
+        "php-amqplib/rabbitmq-bundle": "^1.14",
+        "ocramius/proxy-manager": "^2.1",
+        "symfony/proxy-manager-bridge": "^3.4"
     },
     "require-dev": {
         "matthiasnoback/symfony-config-test": "^2.0",
@@ -24,7 +24,9 @@
         "phpunit/phpunit": "^5.7"
     },
     "autoload": {
-        "psr-4": { "Sylake\\AkeneoProducerBundle\\": "src/" }
+        "psr-4": {
+            "Sylake\\AkeneoProducerBundle\\": "src/"
+        }
     },
     "autoload-dev": {
         "psr-4": {
