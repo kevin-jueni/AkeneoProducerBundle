@@ -40,14 +40,14 @@ extensions:
             tabCode: pim-job-instance-history
 
     pim-job-instance-sylake-akeneo-producer-show-properties-code:
-            module: pim/job/common/edit/field/text
-            parent: pim-job-instance-sylake-akeneo-producer-show-properties
-            position: 100
-            targetZone: properties
-            config:
-                fieldCode: code
-                label: pim_enrich.form.job_instance.tab.properties.code.title
-                readOnly: true
+        module: pim/job/common/edit/field/text
+        parent: pim-job-instance-sylake-akeneo-producer-show-properties
+        position: 100
+        targetZone: properties
+        config:
+            fieldCode: code
+            label: pim_enrich.form.job_instance.tab.properties.code.title
+            readOnly: true
 
     pim-job-instance-sylake-akeneo-producer-show-properties-label:
         module: pim/job/common/edit/field/text
@@ -77,14 +77,14 @@ extensions:
         targetZone: meta
         position: 100
 
-    pim-job-instance-sylake-akeneo-producer-show-back-to-grid:
-        module: pim/form/common/back-to-grid
-        parent: pim-job-instance-sylake-akeneo-producer-show
-        targetZone: back
-        aclResourceId: pim_importexport_export_profile_index
-        position: 80
-        config:
-            backUrl: pim_importexport_export_profile_index
+    #    pim-job-instance-sylake-akeneo-producer-show-back-to-grid:
+    #        module: pim/form/common/back-to-grid
+    #        parent: pim-job-instance-sylake-akeneo-producer-show
+    #        targetZone: back
+    #        aclResourceId: pim_importexport_export_profile_index
+    #        position: 80
+    #        config:
+    #            backUrl: pim_importexport_export_profile_index
 
     pim-job-instance-sylake-akeneo-producer-show-content-readonly:
         module: pim/job/product/edit/content/readonly
