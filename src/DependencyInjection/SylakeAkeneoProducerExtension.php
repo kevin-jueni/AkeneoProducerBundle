@@ -40,6 +40,7 @@ final class SylakeAkeneoProducerExtension extends Extension implements PrependEx
                         'name' => 'sylake',
                         'type' => 'fanout',
                     ],
+                    'enable_logger' => true,
                 ],
             ],
         ]);
