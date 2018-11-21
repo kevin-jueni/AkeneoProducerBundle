@@ -4,7 +4,6 @@ namespace Sylake\AkeneoProducerBundle\Command;
 
 use Pim\Component\Catalog\Model\ProductInterface;
 use Pim\Component\Catalog\Query\ProductQueryBuilderFactoryInterface;
-use Sylake\AkeneoProducerBundle\Connector\Projector\ItemProjector;
 use Sylake\AkeneoProducerBundle\Connector\Projector\ItemProjectorInterface;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
@@ -16,12 +15,12 @@ final class ExportProductCommand extends Command
     /** @var ProductQueryBuilderFactoryInterface */
     private $productQueryBuilderFactory;
 
-    /** @var ItemProjector */
+    /** @var ItemProjectorInterface */
     private $itemProjector;
 
     /**
      * @param ProductQueryBuilderFactoryInterface $productQueryBuilderFactory
-     * @param ItemProjector $itemProjector
+     * @param ItemProjectorInterface $itemProjector
      */
     public function __construct(
         ProductQueryBuilderFactoryInterface $productQueryBuilderFactory,
