@@ -5,7 +5,7 @@ namespace Sylake\AkeneoProducerBundle\DependencyInjection;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Extension\PrependExtensionInterface;
-use Symfony\Component\DependencyInjection\Loader\XmlFileLoader;
+use Symfony\Component\DependencyInjection\Loader\YamlFileLoader;
 use Symfony\Component\HttpKernel\DependencyInjection\Extension;
 
 final class SylakeAkeneoProducerExtension extends Extension implements PrependExtensionInterface
@@ -19,9 +19,9 @@ final class SylakeAkeneoProducerExtension extends Extension implements PrependEx
 
         $container->setParameter('sylake_akeneo_producer.config.locales', $config['locales']);
 
-        $loader = new XmlFileLoader($container, new FileLocator(__DIR__ . '/../Resources/config'));
+        $loader = new YamlFileLoader($container, new FileLocator(__DIR__ . '/../Resources/config'));
 
-        $loader->load('services.xml');
+        $loader->load('services.yml');
     }
 
     /**

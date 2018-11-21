@@ -17,13 +17,12 @@ final class Configuration implements ConfigurationInterface
 
         $rootNode
             ->children()
-                ->arrayNode('locales')
-                    ->prototype('scalar')->end()
-                    ->performNoDeepMerging()
-                    ->defaultValue(['en_GB', 'de_DE'])
-                ->end()
+            ->arrayNode('locales')
+            ->prototype('scalar')->end()
+            ->performNoDeepMerging()
+            ->defaultValue(['de_CH', 'en_US', 'de_DE', 'fr_FR'])
             ->end()
-        ;
+            ->end();
 
         return $treeBuilder;
     }

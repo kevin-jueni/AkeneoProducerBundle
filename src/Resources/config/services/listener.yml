@@ -1,0 +1,82 @@
+services:
+    sylake_akeneo_producer.connector.item_set:
+        class: Sylake\AkeneoProducerBundle\Connector\ItemSet
+        public: false
+    sylake_akeneo_producer.connector.item_projector:
+        class: Sylake\AkeneoProducerBundle\Connector\Projector\CompositeItemProjector
+        public: false
+    sylake_akeneo_producer.association_type_projector:
+        class: Sylake\AkeneoProducerBundle\Connector\Projector\ItemProjector
+        tags:
+        - { name: sylake_akeneo_producer.connector.item_projector, supported_class: \Pim\Component\Catalog\Model\AssociationTypeInterface, supported-class: \Pim\Component\Catalog\Model\AssociationTypeInterface }
+        arguments: ['@pim_connector.processor.normalization.association_type', '@sylake_akeneo_producer.connector.writer.rabbit_mq.association_type', '@sylake_akeneo_producer.connector.job_parameters']
+    sylake_akeneo_producer.attribute_projector:
+        class: Sylake\AkeneoProducerBundle\Connector\Projector\ItemProjector
+        tags:
+        - { name: sylake_akeneo_producer.connector.item_projector, supported_class: \Pim\Component\Catalog\Model\AttributeInterface, supported-class: \Pim\Component\Catalog\Model\AttributeInterface }
+        arguments: ['@pim_connector.processor.normalization.attribute', '@sylake_akeneo_producer.connector.writer.rabbit_mq.attribute', '@sylake_akeneo_producer.connector.job_parameters']
+    sylake_akeneo_producer.attribute_option_projector:
+        class: Sylake\AkeneoProducerBundle\Connector\Projector\ItemProjector
+        tags:
+        - { name: sylake_akeneo_producer.connector.item_projector, supported_class: \Pim\Component\Catalog\Model\AttributeOptionInterface, supported-class: \Pim\Component\Catalog\Model\AttributeOptionInterface }
+        arguments: ['@pim_connector.processor.normalization.attribute_option', '@sylake_akeneo_producer.connector.writer.rabbit_mq.attribute_option', '@sylake_akeneo_producer.connector.job_parameters']
+    sylake_akeneo_producer.category_projector:
+        class: Sylake\AkeneoProducerBundle\Connector\Projector\ItemProjector
+        tags:
+        - { name: sylake_akeneo_producer.connector.item_projector, supported_class: \Akeneo\Component\Classification\Model\CategoryInterface, supported-class: \Akeneo\Component\Classification\Model\CategoryInterface }
+        arguments: ['@pim_connector.processor.normalization.category', '@sylake_akeneo_producer.connector.writer.rabbit_mq.category', '@sylake_akeneo_producer.connector.job_parameters']
+    sylake_akeneo_producer.family_projector:
+        class: Sylake\AkeneoProducerBundle\Connector\Projector\ItemProjector
+        tags:
+        - { name: sylake_akeneo_producer.connector.item_projector, supported_class: \Pim\Component\Catalog\Model\FamilyInterface, supported-class: \Pim\Component\Catalog\Model\FamilyInterface }
+        arguments: ['@pim_connector.processor.normalization.family', '@sylake_akeneo_producer.connector.writer.rabbit_mq.family', '@sylake_akeneo_producer.connector.job_parameters']
+    sylake_akeneo_producer.group_projector:
+        class: Sylake\AkeneoProducerBundle\Connector\Projector\ItemProjector
+        tags:
+        - { name: sylake_akeneo_producer.connector.item_projector, supported_class: \Pim\Component\Catalog\Model\GroupInterface, supported-class: \Pim\Component\Catalog\Model\GroupInterface }
+        arguments: ['@pim_connector.processor.normalization.group', '@sylake_akeneo_producer.connector.writer.rabbit_mq.group', '@sylake_akeneo_producer.connector.job_parameters']
+    sylake_akeneo_producer.product_projector:
+        class: Sylake\AkeneoProducerBundle\Connector\Projector\ItemProjector
+        tags:
+        - { name: sylake_akeneo_producer.connector.item_projector, supported_class: \Pim\Component\Catalog\Model\ProductInterface, supported-class: \Pim\Component\Catalog\Model\ProductInterface }
+        arguments: ['@pim_connector.processor.normalization.product', '@sylake_akeneo_producer.connector.writer.rabbit_mq.product', '@sylake_akeneo_producer.connector.job_parameters']
+    sylake_akeneo_producer.item_set_projector:
+        class: Sylake\AkeneoProducerBundle\Connector\Projector\ItemsProjector
+        tags:
+        - { name: doctrine.event_listener, event: postFlush }
+        - { name: kernel.event_listener, event: akeneo.storage.post_save, method: __invoke, priority: -1024 }
+        arguments: ['@sylake_akeneo_producer.connector.item_set', '@sylake_akeneo_producer.connector.item_projector']
+    sylake_akeneo_producer.association_type_saved_listener:
+        class: Sylake\AkeneoProducerBundle\Connector\Listener\AssociationTypeSavedListener
+        tags:
+        - { name: doctrine.event_listener, event: postPersist }
+        - { name: doctrine.event_listener, event: postUpdate }
+        arguments: ['@sylake_akeneo_producer.connector.item_set']
+    sylake_akeneo_producer.attribute_saved_listener:
+        class: Sylake\AkeneoProducerBundle\Connector\Listener\AttributeSavedListener
+        tags:
+        - { name: kernel.event_listener, event: akeneo.storage.post_save, method: __invoke, priority: 1024 }
+        arguments: ['@sylake_akeneo_producer.connector.item_set']
+    sylake_akeneo_producer.category_saved_listener:
+        class: Sylake\AkeneoProducerBundle\Connector\Listener\CategorySavedListener
+        tags:
+        - { name: doctrine.event_listener, event: postPersist }
+        - { name: doctrine.event_listener, event: postUpdate }
+        arguments: ['@sylake_akeneo_producer.connector.item_set']
+    sylake_akeneo_producer.family_saved_listener:
+        class: Sylake\AkeneoProducerBundle\Connector\Listener\FamilySavedListener
+        tags:
+        - { name: doctrine.event_listener, event: postPersist }
+        - { name: doctrine.event_listener, event: postUpdate }
+        arguments: ['@sylake_akeneo_producer.connector.item_set']
+    sylake_akeneo_producer.group_saved_listener:
+        class: Sylake\AkeneoProducerBundle\Connector\Listener\GroupSavedListener
+        tags:
+        - { name: doctrine.event_listener, event: postPersist }
+        - { name: doctrine.event_listener, event: postUpdate }
+        arguments: ['@sylake_akeneo_producer.connector.item_set']
+    sylake_akeneo_producer.product_saved_listener:
+        class: Sylake\AkeneoProducerBundle\Connector\Listener\ProductSavedListener
+        tags:
+        - { name: kernel.event_listener, event: akeneo.storage.post_save, method: __invoke, priority: 1024 }
+        arguments: ['@sylake_akeneo_producer.connector.item_set']

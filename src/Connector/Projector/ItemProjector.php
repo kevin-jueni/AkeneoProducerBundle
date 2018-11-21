@@ -33,15 +33,15 @@ final class ItemProjector implements ItemProjectorInterface
 
     public function __invoke($item)
     {
-       if ($this->processor instanceof StepExecutionAwareInterface) {
-           $jobExecution = new JobExecution();
-           $jobExecution->setJobParameters(new JobParameters($this->parametersProvider->getDefaultValues()));
+        if ($this->processor instanceof StepExecutionAwareInterface) {
+            $jobExecution = new JobExecution();
+            $jobExecution->setJobParameters(new JobParameters($this->parametersProvider->getDefaultValues()));
 
-           $stepExecution = new StepExecution('42', $jobExecution);
+            $stepExecution = new StepExecution('42', $jobExecution);
 
-           $this->processor->setStepExecution($stepExecution);
-       }
+            $this->processor->setStepExecution($stepExecution);
+        }
 
-       $this->writer->write([$this->processor->process($item)]);
+        $this->writer->write([$this->processor->process($item)]);
     }
 }

@@ -9,7 +9,9 @@ use Akeneo\Component\Batch\Job\JobParameters\DefaultValuesProviderInterface;
 /**
  * Non-final just to make it lazy-loadable.
  */
-/* final */ class AkeneoProducer implements ConstraintCollectionProviderInterface, DefaultValuesProviderInterface
+/* final */
+
+class AkeneoProducer implements ConstraintCollectionProviderInterface, DefaultValuesProviderInterface
 {
     /**
      * @var DefaultValuesProviderInterface
@@ -65,7 +67,7 @@ use Akeneo\Component\Batch\Job\JobParameters\DefaultValuesProviderInterface;
                     ]
                 ],
                 'structure' => [
-                    'scope' => 'ecommerce',
+                    'scope' => 'b2b',
                     'locales' => $this->locales
                 ],
             ],
