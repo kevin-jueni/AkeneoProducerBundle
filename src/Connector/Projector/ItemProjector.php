@@ -35,6 +35,7 @@ final class ItemProjector implements ItemProjectorInterface
     {
         if ($this->processor instanceof StepExecutionAwareInterface) {
             $jobExecution = new JobExecution();
+            $jobExecution->setUser('import');
             $jobExecution->setJobParameters(new JobParameters($this->parametersProvider->getDefaultValues()));
 
             $stepExecution = new StepExecution('42', $jobExecution);

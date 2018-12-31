@@ -5,12 +5,14 @@ namespace Sylake\AkeneoProducerBundle\Command;
 use Pim\Component\Catalog\Model\ProductInterface;
 use Pim\Component\Catalog\Query\ProductQueryBuilderFactoryInterface;
 use Sylake\AkeneoProducerBundle\Connector\Projector\ItemProjectorInterface;
-use Symfony\Component\Console\Command\Command;
+use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
+use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
+use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
 
-final class ExportProductCommand extends Command
+final class ExportProductCommand extends ContainerAwareCommand
 {
     /** @var ProductQueryBuilderFactoryInterface */
     private $productQueryBuilderFactory;
@@ -65,5 +67,38 @@ final class ExportProductCommand extends Command
 
             $this->itemProjector->__invoke($product);
         }
+    }
+
+    /**
+     * @param $username
+     * @return bool
+     * @throws \Exception
+     */
+    protected function createToken(string $username): bool
+    {
+        $userRepository = $this->getContainer()->get('pim_user.repository.user');
+        $user = $userRepository->findOneByIdentifier($username);
+
+        if ($user === null) {
+            throw new \Exception(
+                sprintf(
+                    'Username "%s" is unknown',
+                    $username
+                )
+            );
+        }
+
+        $token = new UsernamePasswordToken($user, null, 'main', $user->getRoles());
+        $this->getTokenStorage()->setToken($token);
+
+        return true;
+    }
+
+    /**
+     * @return TokenStorageInterface
+     */
+    protected function getTokenStorage()
+    {
+        return $this->getContainer()->get('security.token_storage');
     }
 }

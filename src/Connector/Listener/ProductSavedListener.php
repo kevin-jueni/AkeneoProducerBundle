@@ -3,6 +3,7 @@
 namespace Sylake\AkeneoProducerBundle\Connector\Listener;
 
 use Pim\Component\Catalog\Model\ProductInterface;
+use Pim\Component\Catalog\Model\ProductModelInterface;
 use Sylake\AkeneoProducerBundle\Connector\ItemSetInterface;
 use Symfony\Component\EventDispatcher\GenericEvent;
 
@@ -24,6 +25,12 @@ final class ProductSavedListener
             return;
         }
 
-        $this->itemSet->add($product);
+        if ($product instanceof ProductInterface) {
+            $this->itemSet->add($product);
+        } elseif ($product instanceof ProductModelInterface) {
+            foreach ($product->getProducts() as $variant) {
+                $this->itemSet->add($variant);
+            }
+        }
     }
 }
