@@ -1,6 +1,0 @@
-services:
-    65cf5eb877e8877a48dbcc6d1c0d43408e5c3315c72975b6950c6daee57506b9_1:
-        class: Sylake\AkeneoProducerBundle\Command\ExportProductCommand
-        tags:
-        - { name: console.command }
-        arguments: ['@pim_catalog.query.product_query_builder_factory', '@sylake_akeneo_producer.connector.item_projector']
