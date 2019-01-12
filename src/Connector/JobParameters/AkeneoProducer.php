@@ -57,7 +57,7 @@ class AkeneoProducer implements ConstraintCollectionProviderInterface, DefaultVa
     public function getDefaultValues()
     {
         return array_replace($this->baseDefaultValuesProvider->getDefaultValues(), [
-            'with_media' => false,
+            'with_media' => true,
             'filters' => [
                 'data' => [
                     [

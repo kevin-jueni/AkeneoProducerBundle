@@ -2,18 +2,14 @@
 
 namespace Sylake\AkeneoProducerBundle\Connector\Projector;
 
-use Akeneo\Component\Batch\Item\ItemProcessorInterface;
 use Akeneo\Component\Batch\Item\ItemWriterInterface;
-use Akeneo\Component\Batch\Job\JobParameters;
 use Akeneo\Component\Batch\Job\JobParameters\DefaultValuesProviderInterface;
-use Akeneo\Component\Batch\Model\JobExecution;
-use Akeneo\Component\Batch\Model\StepExecution;
-use Akeneo\Component\Batch\Step\StepExecutionAwareInterface;
+use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
 
 final class ItemProjector implements ItemProjectorInterface
 {
-    /** @var ItemProcessorInterface */
-    private $processor;
+    /** @var NormalizerInterface */
+    private $normalizer;
 
     /** @var ItemWriterInterface */
     private $writer;
@@ -22,18 +18,18 @@ final class ItemProjector implements ItemProjectorInterface
     private $parametersProvider;
 
     public function __construct(
-        ItemProcessorInterface $processor,
+        NormalizerInterface $normalizer,
         ItemWriterInterface $writer,
         DefaultValuesProviderInterface $valuesProvider = null
     ) {
-        $this->processor = $processor;
+        $this->normalizer = $normalizer;
         $this->writer = $writer;
         $this->parametersProvider = $valuesProvider;
     }
 
     public function __invoke($item)
     {
-        if ($this->processor instanceof StepExecutionAwareInterface) {
+        /*if ($this->processor instanceof StepExecutionAwareInterface) {
             $jobExecution = new JobExecution();
             $jobExecution->setUser('import');
             $jobExecution->setJobParameters(new JobParameters($this->parametersProvider->getDefaultValues()));
@@ -41,8 +37,8 @@ final class ItemProjector implements ItemProjectorInterface
             $stepExecution = new StepExecution('42', $jobExecution);
 
             $this->processor->setStepExecution($stepExecution);
-        }
+        }*/
 
-        $this->writer->write([$this->processor->process($item)]);
+        $this->writer->write([$this->normalizer->normalize($item)]);
     }
 }
