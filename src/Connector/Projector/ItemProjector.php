@@ -2,14 +2,18 @@
 
 namespace Sylake\AkeneoProducerBundle\Connector\Projector;
 
+use Akeneo\Component\Batch\Item\ItemProcessorInterface;
 use Akeneo\Component\Batch\Item\ItemWriterInterface;
+use Akeneo\Component\Batch\Job\JobParameters;
 use Akeneo\Component\Batch\Job\JobParameters\DefaultValuesProviderInterface;
-use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
+use Akeneo\Component\Batch\Model\JobExecution;
+use Akeneo\Component\Batch\Model\StepExecution;
+use Akeneo\Component\Batch\Step\StepExecutionAwareInterface;
 
 final class ItemProjector implements ItemProjectorInterface
 {
-    /** @var NormalizerInterface */
-    private $normalizer;
+    /** @var ItemProcessorInterface */
+    private $processor;
 
     /** @var ItemWriterInterface */
     private $writer;
@@ -18,18 +22,23 @@ final class ItemProjector implements ItemProjectorInterface
     private $parametersProvider;
 
     public function __construct(
-        NormalizerInterface $normalizer,
+        ItemProcessorInterface $processor,
         ItemWriterInterface $writer,
         DefaultValuesProviderInterface $valuesProvider = null
     ) {
-        $this->normalizer = $normalizer;
+        $this->processor = $processor;
         $this->writer = $writer;
         $this->parametersProvider = $valuesProvider;
     }
 
+    /**
+     * @param object $item
+     * @throws \Akeneo\Component\Batch\Item\InvalidItemException
+     * @throws \Exception
+     */
     public function __invoke($item)
     {
-        /*if ($this->processor instanceof StepExecutionAwareInterface) {
+        if ($this->processor instanceof StepExecutionAwareInterface) {
             $jobExecution = new JobExecution();
             $jobExecution->setUser('import');
             $jobExecution->setJobParameters(new JobParameters($this->parametersProvider->getDefaultValues()));
@@ -37,8 +46,8 @@ final class ItemProjector implements ItemProjectorInterface
             $stepExecution = new StepExecution('42', $jobExecution);
 
             $this->processor->setStepExecution($stepExecution);
-        }*/
+        }
 
-        $this->writer->write([$this->normalizer->normalize($item)]);
+        $this->writer->write([$this->processor->process($item)]);
     }
 }

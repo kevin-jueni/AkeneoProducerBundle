@@ -20,8 +20,10 @@ final class Configuration implements ConfigurationInterface
             ->arrayNode('locales')
             ->prototype('scalar')->end()
             ->performNoDeepMerging()
-            ->defaultValue(['de_CH', 'en_US', 'de_DE', 'fr_FR'])
+            ->defaultValue(['de_CH', 'en_US'])
             ->end()
+            ->scalarNode('channel')->end()
+            ->scalarNode('category')->end()
             ->end();
 
         return $treeBuilder;

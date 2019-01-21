@@ -18,6 +18,8 @@ final class SylakeAkeneoProducerExtension extends Extension implements PrependEx
         $config = $this->processConfiguration($this->getConfiguration([], $container), $configs);
 
         $container->setParameter('sylake_akeneo_producer.config.locales', $config['locales']);
+        $container->setParameter('sylake_akeneo_producer.config.channel', $config['channel']);
+        $container->setParameter('sylake_akeneo_producer.config.category', $config['category']);
 
         $loader = new XmlFileLoader($container, new FileLocator(__DIR__ . '/../Resources/config'));
 

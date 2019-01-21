@@ -34,21 +34,37 @@ class AkeneoProducer implements ConstraintCollectionProviderInterface, DefaultVa
     private $locales;
 
     /**
+     * @var string
+     */
+    private $channel;
+
+    /**
+     * @var string
+     */
+    private $category;
+
+    /**
      * @param DefaultValuesProviderInterface $baseDefaultValuesProvider
      * @param ConstraintCollectionProviderInterface $baseConstraintCollectionProvider
      * @param string[] $supportedJobNames
      * @param string[] $locales
+     * @param string $channel
+     * @param string $category
      */
     public function __construct(
         DefaultValuesProviderInterface $baseDefaultValuesProvider,
         ConstraintCollectionProviderInterface $baseConstraintCollectionProvider,
         array $supportedJobNames,
-        array $locales
+        array $locales,
+        string $channel,
+        string $category
     ) {
         $this->baseDefaultValuesProvider = $baseDefaultValuesProvider;
         $this->baseConstraintCollectionProvider = $baseConstraintCollectionProvider;
         $this->supportedJobNames = $supportedJobNames;
         $this->locales = $locales;
+        $this->channel = $channel;
+        $this->category = $category;
     }
 
     /**
@@ -64,11 +80,27 @@ class AkeneoProducer implements ConstraintCollectionProviderInterface, DefaultVa
                         'field' => 'enabled',
                         'operator' => '=',
                         'value' => true
-                    ]
+                    ],
+                    [
+                        'field' => 'categories',
+                        'operator' => 'IN CHILDREN',
+                        'value' => [
+                            $this->category,
+                        ],
+                    ],
+                    [
+                        'field' => 'completeness',
+                        'operator' => '>=',
+                        'value' => 100,
+                        'context' => [
+                            'locales' => $this->locales,
+                        ],
+
+                    ],
                 ],
                 'structure' => [
-                    'scope' => 'b2b',
-                    'locales' => $this->locales
+                    'scope' => $this->channel,
+                    'locales' => $this->locales,
                 ],
             ],
         ]);
