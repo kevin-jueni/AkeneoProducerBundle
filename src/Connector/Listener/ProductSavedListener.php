@@ -21,21 +21,12 @@ final class ProductSavedListener
     {
         $product = $event->getSubject();
 
-//        if (!$product instanceof ProductInterface) {
-//            return;
-//        }
-
         if ($product instanceof ProductInterface || $product instanceof ProductModelInterface) {
-            foreach ($product->getCategories() as $category) {
-                if ($category->getRoot() === 33) {
-                    if ($product instanceof ProductInterface) {
-                        $this->itemSet->add($product);
-                    } elseif ($product instanceof ProductModelInterface) {
-                        foreach ($product->getProducts() as $variant) {
-                            $this->itemSet->add($variant);
-                        }
-                    }
-                    break;
+            if ($product instanceof ProductInterface) {
+                $this->itemSet->add($product);
+            } elseif ($product instanceof ProductModelInterface) {
+                foreach ($product->getProducts() as $variant) {
+                    $this->itemSet->add($variant);
                 }
             }
         } else {
