@@ -76,11 +76,11 @@ class AkeneoProducer implements ConstraintCollectionProviderInterface, DefaultVa
             'with_media' => true,
             'filters' => [
                 'data' => [
-                    [
-                        'field' => 'enabled',
-                        'operator' => '=',
-                        'value' => true
-                    ],
+//                    [
+//                        'field' => 'enabled',
+//                        'operator' => '=',
+//                        'value' => true
+//                    ],
                     [
                         'field' => 'categories',
                         'operator' => 'IN CHILDREN',

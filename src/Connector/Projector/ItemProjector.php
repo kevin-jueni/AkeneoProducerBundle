@@ -10,7 +10,7 @@ use Akeneo\Component\Batch\Model\JobExecution;
 use Akeneo\Component\Batch\Model\StepExecution;
 use Akeneo\Component\Batch\Step\StepExecutionAwareInterface;
 use Akeneo\Component\Classification\CategoryAwareInterface;
-use Akeneo\Component\Classification\Model\CategoryInterface;
+use Pim\Component\Catalog\Model\CategoryInterface;
 use Pim\Component\Catalog\Model\Product;
 use Pim\Component\Catalog\Model\ProductModel;
 
@@ -68,10 +68,6 @@ final class ItemProjector implements ItemProjectorInterface
         return true;
     }
 
-    /**
-     * @param $item
-     * @return bool
-     */
     protected function isExportable($item): bool
     {
         $getRootCategory = function (CategoryInterface $category) use (&$getRootCategory) {
@@ -108,6 +104,7 @@ final class ItemProjector implements ItemProjectorInterface
 
                         if (in_array($rootCategory->getCode(), $filter['value'])) {
                             $isValid = true;
+                            break;
                         }
 
                         if ($isValid === false) {
@@ -115,11 +112,11 @@ final class ItemProjector implements ItemProjectorInterface
                         }
                     }
                     break;
-                case 'enabled':
-                    if (method_exists($item, 'isEnabled') && $item->isEnabled() !== $filter['value']) {
-                        return false;
-                    }
-                    break;
+//                case 'enabled':
+//                    if (method_exists($item, 'isEnabled') && $item->isEnabled() !== $filter['value']) {
+//                        return false;
+//                    }
+//                    break;
                 case 'completeness':
                     if ($item instanceof Product or $item instanceof ProductModel) {
                         foreach ($item->getCompletenesses() as $completeness) {
