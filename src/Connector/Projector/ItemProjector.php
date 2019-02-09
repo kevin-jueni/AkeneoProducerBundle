@@ -12,7 +12,6 @@ use Akeneo\Component\Batch\Step\StepExecutionAwareInterface;
 use Akeneo\Component\Classification\CategoryAwareInterface;
 use Pim\Component\Catalog\Model\CategoryInterface;
 use Pim\Component\Catalog\Model\Product;
-use Pim\Component\Catalog\Model\ProductModel;
 
 final class ItemProjector implements ItemProjectorInterface
 {
@@ -118,7 +117,7 @@ final class ItemProjector implements ItemProjectorInterface
 //                    }
 //                    break;
                 case 'completeness':
-                    if ($item instanceof Product or $item instanceof ProductModel) {
+                    if ($item instanceof Product/* || $item instanceof ProductModel*/) {
                         foreach ($item->getCompletenesses() as $completeness) {
                             if ($channel === $completeness->getChannel()->getCode() && $completeness->getRatio() < $filter['value']) {
                                 return false;
