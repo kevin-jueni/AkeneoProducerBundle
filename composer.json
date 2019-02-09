@@ -11,7 +11,7 @@
         }
     ],
     "require": {
-        "akeneo/pim-community-dev": "^2.3",
+        "akeneo/pim-community-dev": "^3.0",
         "symfony/symfony": "^3.4",
         "php-amqplib/rabbitmq-bundle": "^1.14",
         "ocramius/proxy-manager": "^2.1",
