@@ -2,8 +2,8 @@
 
 namespace Sylake\AkeneoProducerBundle\Command;
 
-use Pim\Component\Catalog\Model\ProductInterface;
-use Pim\Component\Catalog\Query\ProductQueryBuilderFactoryInterface;
+use Akeneo\Pim\Enrichment\Component\Product\Model\ProductInterface;
+use Akeneo\Pim\Enrichment\Component\Product\Query\ProductQueryBuilderFactoryInterface;
 use Sylake\AkeneoProducerBundle\Connector\Projector\ItemProjectorInterface;
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
 use Symfony\Component\Console\Input\InputArgument;

@@ -2,8 +2,8 @@
 
 namespace Sylake\AkeneoProducerBundle\Connector\Listener;
 
-use Pim\Component\Catalog\Model\ProductInterface;
-use Pim\Component\Catalog\Model\ProductModelInterface;
+use Akeneo\Pim\Enrichment\Component\Product\Model\ProductInterface;
+use Akeneo\Pim\Enrichment\Component\Product\Model\ProductModelInterface;
 use Sylake\AkeneoProducerBundle\Connector\ItemSetInterface;
 use Symfony\Component\EventDispatcher\GenericEvent;
 

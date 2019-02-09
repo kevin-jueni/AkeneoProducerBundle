@@ -2,9 +2,9 @@
 
 namespace Sylake\AkeneoProducerBundle\Connector\JobParameters;
 
-use Akeneo\Component\Batch\Job\JobInterface;
-use Akeneo\Component\Batch\Job\JobParameters\ConstraintCollectionProviderInterface;
-use Akeneo\Component\Batch\Job\JobParameters\DefaultValuesProviderInterface;
+use Akeneo\Tool\Component\Batch\Job\JobInterface;
+use Akeneo\Tool\Component\Batch\Job\JobParameters\ConstraintCollectionProviderInterface;
+use Akeneo\Tool\Component\Batch\Job\JobParameters\DefaultValuesProviderInterface;
 
 /**
  * Non-final just to make it lazy-loadable.

@@ -2,16 +2,16 @@
 
 namespace Sylake\AkeneoProducerBundle\Connector\Projector;
 
-use Akeneo\Component\Batch\Item\ItemProcessorInterface;
-use Akeneo\Component\Batch\Item\ItemWriterInterface;
-use Akeneo\Component\Batch\Job\JobParameters;
-use Akeneo\Component\Batch\Job\JobParameters\DefaultValuesProviderInterface;
-use Akeneo\Component\Batch\Model\JobExecution;
-use Akeneo\Component\Batch\Model\StepExecution;
-use Akeneo\Component\Batch\Step\StepExecutionAwareInterface;
-use Akeneo\Component\Classification\CategoryAwareInterface;
-use Pim\Component\Catalog\Model\CategoryInterface;
-use Pim\Component\Catalog\Model\Product;
+use Akeneo\Tool\Component\Batch\Item\ItemProcessorInterface;
+use Akeneo\Tool\Component\Batch\Item\ItemWriterInterface;
+use Akeneo\Tool\Component\Batch\Job\JobParameters;
+use Akeneo\Tool\Component\Batch\Job\JobParameters\DefaultValuesProviderInterface;
+use Akeneo\Tool\Component\Batch\Model\JobExecution;
+use Akeneo\Tool\Component\Batch\Model\StepExecution;
+use Akeneo\Tool\Component\Batch\Step\StepExecutionAwareInterface;
+use Akeneo\Tool\Component\Classification\CategoryAwareInterface;
+use Akeneo\Pim\Enrichment\Component\Category\Model\CategoryInterface;
+use Akeneo\Pim\Enrichment\Component\Product\Model\Product;
 
 final class ItemProjector implements ItemProjectorInterface
 {
@@ -43,7 +43,7 @@ final class ItemProjector implements ItemProjectorInterface
     /**
      * @param object $item
      * @return bool
-     * @throws \Akeneo\Component\Batch\Item\InvalidItemException
+     * @throws \Akeneo\Tool\Component\Batch\Item\InvalidItemException
      * @throws \Exception
      */
     public function __invoke($item): bool

@@ -3,7 +3,7 @@
 namespace Sylake\AkeneoProducerBundle\Connector\Listener;
 
 use Doctrine\Common\Persistence\Event\LifecycleEventArgs;
-use Pim\Component\Catalog\Model\FamilyInterface;
+use Akeneo\Pim\Structure\Component\Model\FamilyInterface;
 use Sylake\AkeneoProducerBundle\Connector\ItemSetInterface;
 
 final class FamilySavedListener

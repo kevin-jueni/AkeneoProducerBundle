@@ -3,7 +3,7 @@
 namespace Sylake\AkeneoProducerBundle\Connector\Listener;
 
 use Doctrine\Common\Persistence\Event\LifecycleEventArgs;
-use Pim\Component\Catalog\Model\GroupInterface;
+use Akeneo\Pim\Enrichment\Component\Category\Model\GroupInterface;
 use Sylake\AkeneoProducerBundle\Connector\ItemSetInterface;
 
 final class GroupSavedListener

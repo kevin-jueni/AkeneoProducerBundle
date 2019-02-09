@@ -2,7 +2,7 @@
 
 namespace Sylake\AkeneoProducerBundle\Connector\Listener;
 
-use Pim\Component\Catalog\Model\AttributeInterface;
+use Akeneo\Pim\Structure\Component\Model\AttributeInterface;
 use Sylake\AkeneoProducerBundle\Connector\ItemSetInterface;
 use Symfony\Component\EventDispatcher\GenericEvent;
 

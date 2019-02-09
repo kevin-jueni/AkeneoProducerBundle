@@ -3,7 +3,7 @@
 namespace Sylake\AkeneoProducerBundle\Connector\Listener;
 
 use Doctrine\Common\Persistence\Event\LifecycleEventArgs;
-use PimEnterprise\Component\ProductAsset\Model\AssetInterface;
+use Akeneo\Asset\Component\Model\AssetInterface;
 use Sylake\AkeneoProducerBundle\Connector\ItemSetInterface;
 
 final class AssetSavedListener

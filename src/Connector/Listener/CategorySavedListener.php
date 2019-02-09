@@ -2,9 +2,9 @@
 
 namespace Sylake\AkeneoProducerBundle\Connector\Listener;
 
-use Akeneo\Component\Classification\Model\CategoryInterface;
+use Akeneo\Tool\Component\Classification\Model\CategoryInterface;
 use Doctrine\Common\Persistence\Event\LifecycleEventArgs;
-use PimEnterprise\Bundle\SecurityBundle\Entity\ProductCategoryAccess;
+use Akeneo\Pim\Permission\Bundle\Entity\ProductCategoryAccess;
 use Sylake\AkeneoProducerBundle\Connector\ItemSetInterface;
 
 final class CategorySavedListener

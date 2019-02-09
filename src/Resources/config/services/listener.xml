@@ -14,7 +14,7 @@
             <argument type="service" id="sylake_akeneo_producer.connector.writer.rabbit_mq.association_type"/>
             <argument type="service" id="sylake_akeneo_producer.connector.job_parameters"/>
             <tag name="sylake_akeneo_producer.connector.item_projector"
-                 supported-class="\Pim\Component\Catalog\Model\AssociationTypeInterface"/>
+                 supported-class="\Akeneo\Pim\Structure\Component\Model\AssociationTypeInterface"/>
         </service>
 
         <service class="Sylake\AkeneoProducerBundle\Connector\Projector\ItemProjector">
@@ -22,7 +22,7 @@
             <argument type="service" id="sylake_akeneo_producer.connector.writer.rabbit_mq.attribute"/>
             <argument type="service" id="sylake_akeneo_producer.connector.job_parameters"/>
             <tag name="sylake_akeneo_producer.connector.item_projector"
-                 supported-class="\Pim\Component\Catalog\Model\AttributeInterface"/>
+                 supported-class="\Akeneo\Pim\Structure\Component\Model\AttributeInterface"/>
         </service>
 
         <service class="Sylake\AkeneoProducerBundle\Connector\Projector\ItemProjector">
@@ -30,7 +30,7 @@
             <argument type="service" id="sylake_akeneo_producer.connector.writer.rabbit_mq.attribute_option"/>
             <argument type="service" id="sylake_akeneo_producer.connector.job_parameters"/>
             <tag name="sylake_akeneo_producer.connector.item_projector"
-                 supported-class="\Pim\Component\Catalog\Model\AttributeOptionInterface"/>
+                 supported-class="\Akeneo\Pim\Structure\Component\Model\AttributeOptionInterface"/>
         </service>
 
         <service class="Sylake\AkeneoProducerBundle\Connector\Projector\ItemProjector">
@@ -38,7 +38,7 @@
             <argument type="service" id="sylake_akeneo_producer.connector.writer.rabbit_mq.asset"/>
             <argument type="service" id="sylake_akeneo_producer.connector.job_parameters"/>
             <tag name="sylake_akeneo_producer.connector.item_projector"
-                 supported-class="\PimEnterprise\Component\ProductAsset\Model\AssetInterface"/>
+                 supported-class="\Akeneo\Asset\Component\Model\AssetInterface"/>
         </service>
 
         <service class="Sylake\AkeneoProducerBundle\Connector\Projector\ItemProjector">
@@ -46,7 +46,7 @@
             <argument type="service" id="sylake_akeneo_producer.connector.writer.rabbit_mq.category"/>
             <argument type="service" id="sylake_akeneo_producer.connector.job_parameters"/>
             <tag name="sylake_akeneo_producer.connector.item_projector"
-                 supported-class="\Akeneo\Component\Classification\Model\CategoryInterface"/>
+                 supported-class="\Akeneo\Tool\Component\Classification\Model\CategoryInterface"/>
         </service>
 
         <service class="Sylake\AkeneoProducerBundle\Connector\Projector\ItemProjector">
@@ -54,7 +54,7 @@
             <argument type="service" id="sylake_akeneo_producer.connector.writer.rabbit_mq.family"/>
             <argument type="service" id="sylake_akeneo_producer.connector.job_parameters"/>
             <tag name="sylake_akeneo_producer.connector.item_projector"
-                 supported-class="\Pim\Component\Catalog\Model\FamilyInterface"/>
+                 supported-class="\Akeneo\Pim\Structure\Component\Model\FamilyInterface"/>
         </service>
 
         <service class="Sylake\AkeneoProducerBundle\Connector\Projector\ItemProjector">
@@ -62,7 +62,7 @@
             <argument type="service" id="sylake_akeneo_producer.connector.writer.rabbit_mq.group"/>
             <argument type="service" id="sylake_akeneo_producer.connector.job_parameters"/>
             <tag name="sylake_akeneo_producer.connector.item_projector"
-                 supported-class="\Pim\Component\Catalog\Model\GroupInterface"/>
+                 supported-class="\Akeneo\Pim\Enrichment\Component\Category\Model\GroupInterface"/>
         </service>
 
         <service class="Sylake\AkeneoProducerBundle\Connector\Projector\ItemProjector">
@@ -70,7 +70,7 @@
             <argument type="service" id="sylake_akeneo_producer.connector.writer.rabbit_mq.product"/>
             <argument type="service" id="sylake_akeneo_producer.connector.job_parameters"/>
             <tag name="sylake_akeneo_producer.connector.item_projector"
-                 supported-class="\Pim\Component\Catalog\Model\ProductInterface"/>
+                 supported-class="\Akeneo\Pim\Enrichment\Component\Product\Model\ProductInterface"/>
         </service>
 
         <service class="Sylake\AkeneoProducerBundle\Connector\Projector\ItemsProjector">

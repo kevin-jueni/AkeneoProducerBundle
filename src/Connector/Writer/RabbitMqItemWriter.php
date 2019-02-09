@@ -2,7 +2,7 @@
 
 namespace Sylake\AkeneoProducerBundle\Connector\Writer;
 
-use Akeneo\Component\Batch\Item\ItemWriterInterface;
+use Akeneo\Tool\Component\Batch\Item\ItemWriterInterface;
 use OldSound\RabbitMqBundle\RabbitMq\ProducerInterface;
 
 final class RabbitMqItemWriter implements ItemWriterInterface
