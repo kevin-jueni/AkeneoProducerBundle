@@ -62,7 +62,7 @@
             <argument type="service" id="sylake_akeneo_producer.connector.writer.rabbit_mq.group"/>
             <argument type="service" id="sylake_akeneo_producer.connector.job_parameters"/>
             <tag name="sylake_akeneo_producer.connector.item_projector"
-                 supported-class="\Akeneo\Pim\Enrichment\Component\Category\Model\GroupInterface"/>
+                 supported-class="\Akeneo\Pim\Enrichment\Component\Product\Model\GroupInterface"/>
         </service>
 
         <service class="Sylake\AkeneoProducerBundle\Connector\Projector\ItemProjector">

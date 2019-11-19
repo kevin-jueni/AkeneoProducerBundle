@@ -2,6 +2,7 @@
 
 namespace Sylake\AkeneoProducerBundle\Connector\Listener;
 
+use Akeneo\Pim\Enrichment\Component\Product\Model\GroupTranslationInterface;
 use Doctrine\Common\Persistence\Event\LifecycleEventArgs;
 use Akeneo\Pim\Enrichment\Component\Category\Model\GroupInterface;
 use Sylake\AkeneoProducerBundle\Connector\ItemSetInterface;
@@ -28,12 +29,18 @@ final class GroupSavedListener
 
     public function __invoke(LifecycleEventArgs $event)
     {
-        $category = $event->getObject();
+        $group = $event->getObject();
 
-        if (!$category instanceof GroupInterface) {
+        if (!$group instanceof GroupInterface && !$group instanceof GroupTranslationInterface) {
             return;
         }
 
-        $this->itemSet->add($category);
+        if ($group instanceof GroupInterface) {
+            $this->itemSet->add($group);
+        }
+
+        if ($group instanceof GroupTranslationInterface) {
+            $this->itemSet->add($group->getForeignKey());
+        }
     }
 }
